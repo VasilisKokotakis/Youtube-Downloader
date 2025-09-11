@@ -1,25 +1,56 @@
+import tkinter as tk
+from tkinter import messagebox
 from yt_dlp import YoutubeDL
+import threading
+import os
 
-def main():
-    # Ask user for URL
-    url = input("Enter the YouTube URL: ")
 
-    # yt-dlp options
-    ydl_opts = {
-        "format": "best",                  # best quality
-        "outtmpl": "%(title)s.%(ext)s",    # save file as video title
-    }
+def download_video():
+    url = url_entry.get().strip()
+    if not url:
+        messagebox.showwarning("Input Error", "Please enter a YouTube URL.")
+        return
 
-    try:
-        with YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=True)
+    # Ensure Downloads folder exists
+    download_folder = os.path.join(os.getcwd(), "Downloads")
+    os.makedirs(download_folder, exist_ok=True)
 
-            print("Title:", info.get("title"))
-            print("Views:", info.get("view_count"))
-            print("Download complete.")
+    # Run in a separate thread so GUI doesn't freeze
+    def run_download():
+        try:
+            ydl_opts = {
+                "format": "best",
+                "outtmpl": os.path.join(download_folder, "%(title)s.%(ext)s"),
+            }
+            with YoutubeDL(ydl_opts) as ydl:
+                info = ydl.extract_info(url, download=True)
+                title = info.get("title")
+                views = info.get("view_count")
 
-    except Exception as e:
-        print("An error occurred:", str(e))
+            messagebox.showinfo("Success", f"Downloaded:\n{title}\nViews: {views}\n\nSaved to:\n{download_folder}")
+        except Exception as e:
+            messagebox.showerror("Error", f"An error occurred:\n{str(e)}")
 
-if __name__ == "__main__":
-    main()
+    threading.Thread(target=run_download).start()
+
+
+# --- GUI setup ---
+root = tk.Tk()
+root.title("YouTube Downloader")
+root.geometry("400x200")
+root.resizable(False, False)
+
+# Label
+label = tk.Label(root, text="Enter YouTube URL:", font=("Arial", 12))
+label.pack(pady=10)
+
+# Entry field
+url_entry = tk.Entry(root, width=50, font=("Arial", 10))
+url_entry.pack(pady=5)
+
+# Download button
+download_button = tk.Button(root, text="Download", command=download_video, font=("Arial", 12), bg="#4CAF50", fg="white")
+download_button.pack(pady=20)
+
+# Run GUI
+root.mainloop()
