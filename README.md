@@ -1,20 +1,19 @@
-```markdown
 # Simple YouTube Downloader GUI
 
 A lightweight Python app to download YouTube videos using **yt-dlp** with a user-friendly interface built on **tkinter**.
 
----
 
-### ✨ Features
+
+ ✨ Features
 - Paste a YouTube URL and download with one click
 - Downloads the best available video quality
 - Saves files in a local `Downloads` folder inside the project directory
 - Displays video title and view count after download
 - GUI stays responsive thanks to threading
 
----
 
-### 🚀 Installation & Usage
+
+ 🚀 Installation & Usage
 
 1. **Clone the repo**
    ```
@@ -40,9 +39,9 @@ A lightweight Python app to download YouTube videos using **yt-dlp** with a user
    python main.py
    ```
 
----
 
-### 📂 Project Structure
+
+ 📂 Project Structure
 ```
 .
 ├── Downloads/        # Downloaded videos (auto-created)
@@ -50,15 +49,15 @@ A lightweight Python app to download YouTube videos using **yt-dlp** with a user
 └── README.md         # Project documentation
 ```
 
----
 
-### ⚠️ Disclaimer
+
+ ⚠️ Disclaimer
 
 This tool is for personal use only. Please respect YouTube’s Terms of Service and only download videos you have the right to.
 
----
 
-### 📜 License
+
+ 📜 License
 
 MIT License — feel free to use, modify, and share.
 ```
