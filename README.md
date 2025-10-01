@@ -18,7 +18,7 @@ A lightweight Python app to download YouTube videos using **yt-dlp** with a user
 1. **Clone the repo**
    ```
    git clone https://github.com/VasilisKokotakis/Youtube-Downloader.git
-   cd your-repo-name
+   cd Youtube-Downloader
    ```
 
 2. **Install dependencies**
