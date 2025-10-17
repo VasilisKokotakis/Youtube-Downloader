@@ -66,6 +66,6 @@ A lightweight yet polished Python app to download YouTube videos using **yt-dlp*
 This tool is for **personal use only**.
 Please respect YouTube’s Terms of Service and download only videos you have the rights to.
 
-## 📜 License
+## License
 
-MIT License — free to use, modify, and share.
+This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
